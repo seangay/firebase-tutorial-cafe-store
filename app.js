@@ -26,8 +26,8 @@ function renderCafe(doc) {
     cafeList.append(li);
 }
 
-// Getting data
-db.collection('cafes').where('city', '<=', 'Liverpool').get().then((snapshot) => {
+// Getting data - https://firebase.google.com/docs/firestore/query-data/get-data
+db.collection('cafes').where('city', '==', 'marioland').orderBy('name', 'desc').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderCafe(doc);
     });
