@@ -14,6 +14,15 @@ function renderCafe(doc) {
     city.textContent = doc.data().city;
     li.appendChild(city);
 
+    let deleteButton = document.createElement('div');
+    deleteButton.textContent = 'x';
+    li.appendChild(deleteButton);
+    deleteButton.addEventListener('click', (evt) => {
+        evt.stopPropagation();
+        let id = evt.target.parentElement.getAttribute('data-id');
+        db.collection('cafes').doc(id).delete();
+    })
+
     cafeList.append(li);
 }
 
